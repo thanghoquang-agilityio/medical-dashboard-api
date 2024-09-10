@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notifications",
+  "info": {
+    "singularName": "notification",
+    "pluralName": "notifications",
+    "displayName": "Notification"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "senderName": {
+      "type": "string"
+    },
+    "senderAvatar": {
+      "type": "string"
+    },
+    "receiverName": {
+      "type": "string"
+    },
+    "receiverAvatar": {
+      "type": "string"
+    },
+    "typeAction": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "isRead": {
+      "type": "string"
+    },
+    "info": {
+      "type": "json"
+    },
+    "senderId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "notificationsSent"
+    },
+    "receiverId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "notificationsReceived"
+    }
+  }
+}
