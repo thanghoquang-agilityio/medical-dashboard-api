@@ -419,6 +419,7 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
     singularName: 'notification';
     pluralName: 'notifications';
     displayName: 'Notification';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -426,25 +427,9 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
   attributes: {
     senderName: Attribute.String;
     senderAvatar: Attribute.String;
-    receiverName: Attribute.String;
-    receiverAvatar: Attribute.String;
-    typeAction: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      > &
-      Attribute.DefaultTo<0>;
     isRead: Attribute.String;
     info: Attribute.JSON;
     senderId: Attribute.Relation<
-      'api::notification.notification',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    receiverId: Attribute.Relation<
       'api::notification.notification',
       'manyToOne',
       'plugin::users-permissions.user'
@@ -955,11 +940,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::appointment.appointment'
     >;
     notificationsSent: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::notification.notification'
-    >;
-    notificationsReceived: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
       'api::notification.notification'

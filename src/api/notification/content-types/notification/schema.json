@@ -4,7 +4,8 @@
   "info": {
     "singularName": "notification",
     "pluralName": "notifications",
-    "displayName": "Notification"
+    "displayName": "Notification",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,18 +18,6 @@
     "senderAvatar": {
       "type": "string"
     },
-    "receiverName": {
-      "type": "string"
-    },
-    "receiverAvatar": {
-      "type": "string"
-    },
-    "typeAction": {
-      "type": "integer",
-      "required": true,
-      "min": 0,
-      "default": 0
-    },
     "isRead": {
       "type": "string"
     },
@@ -40,12 +29,6 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "notificationsSent"
-    },
-    "receiverId": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "notificationsReceived"
     }
   }
 }

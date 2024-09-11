@@ -118,12 +118,6 @@
       "relation": "oneToMany",
       "target": "api::notification.notification",
       "mappedBy": "senderId"
-    },
-    "notificationsReceived": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::notification.notification",
-      "mappedBy": "receiverId"
     }
   }
 }
