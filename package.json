@@ -8,7 +8,7 @@
     "name": "A Strapi developer"
   },
   "scripts": {
-    "build": "strapi build && pnpm run strapi import -- -f ./export_data.tar.gz.enc",
+    "build": "strapi build && pnpm run strapi import -f ../export/export_data.tar.gz -y",
     "deploy": "strapi deploy",
     "develop": "strapi develop",
     "start": "strapi start",
