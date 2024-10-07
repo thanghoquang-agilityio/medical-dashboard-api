@@ -18,9 +18,6 @@
     "senderAvatar": {
       "type": "string"
     },
-    "isRead": {
-      "type": "string"
-    },
     "info": {
       "type": "json"
     },
@@ -29,6 +26,9 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "notificationsSent"
+    },
+    "isRead": {
+      "type": "boolean"
     }
   }
 }

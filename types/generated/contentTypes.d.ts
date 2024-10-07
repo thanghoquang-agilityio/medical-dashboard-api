@@ -933,13 +933,13 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
   attributes: {
     senderName: Attribute.String;
     senderAvatar: Attribute.String;
-    isRead: Attribute.String;
     info: Attribute.JSON;
     senderId: Attribute.Relation<
       'api::notification.notification',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    isRead: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
