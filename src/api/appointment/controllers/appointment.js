@@ -13,16 +13,19 @@ module.exports = createCoreController(
       const { userId } = ctx.params;
 
       try {
-        const entries = await strapi.db
+        const entriesSender = await strapi.db
           .query("api::appointment.appointment")
           .findMany({
-            where: {
-              or: [
-                { senderId: { id: userId } },
-                { receiverId: { id: userId } },
-              ],
-            },
+            where: { senderId: userId },
           });
+
+        const entriesReceiver = await strapi.db
+          .query("api::appointment.appointment")
+          .findMany({
+            where: { receiverId: userId },
+          });
+
+        const entries = entriesSender.concat(entriesReceiver);
 
         if (entries.length === 0) {
           return ctx.send(
