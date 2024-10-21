@@ -770,7 +770,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    avatar: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     description: Attribute.Text;
     rating: Attribute.Float &
       Attribute.SetMinMax<
@@ -817,6 +816,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::notification.notification'
     >;
+    avatar: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
