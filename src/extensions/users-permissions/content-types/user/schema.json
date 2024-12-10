@@ -110,6 +110,28 @@
     },
     "avatar": {
       "type": "string"
+    },
+    "avatarUrl": {
+      "type": "string"
+    },
+    "transactionSent": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "senderId"
+    },
+    "transactionReceived": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "receiverId"
+    },
+    "currentBalance": {
+      "type": "decimal",
+      "default": 1000
+    },
+    "currentSpending": {
+      "type": "decimal"
     }
   }
 }

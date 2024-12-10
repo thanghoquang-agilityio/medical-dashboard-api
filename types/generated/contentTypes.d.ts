@@ -817,6 +817,19 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::notification.notification'
     >;
     avatar: Attribute.String;
+    avatarUrl: Attribute.String;
+    transactionSent: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
+    transactionReceived: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::transaction.transaction'
+    >;
+    currentBalance: Attribute.Decimal & Attribute.DefaultTo<1000>;
+    currentSpending: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -996,6 +1009,46 @@ export interface ApiSpecialtySpecialty extends Schema.CollectionType {
   };
 }
 
+export interface ApiTransactionTransaction extends Schema.CollectionType {
+  collectionName: 'transactions';
+  info: {
+    singularName: 'transaction';
+    pluralName: 'transactions';
+    displayName: 'Transaction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Attribute.Decimal;
+    senderId: Attribute.Relation<
+      'api::transaction.transaction',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    receiverId: Attribute.Relation<
+      'api::transaction.transaction',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1018,6 +1071,7 @@ declare module '@strapi/types' {
       'api::chemist.chemist': ApiChemistChemist;
       'api::notification.notification': ApiNotificationNotification;
       'api::specialty.specialty': ApiSpecialtySpecialty;
+      'api::transaction.transaction': ApiTransactionTransaction;
     }
   }
 }
